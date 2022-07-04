@@ -36,7 +36,8 @@ std::vector<std::unique_ptr<rmcpp::Document>> rmcpp::from (const char* const pat
 
             if (json["type"] == "CollectionType") {
                 temporary = rmcpp::Document::Type::Folder;
-            } else if (json["type"] == "DocumentType" and std::filesystem::exists (raw + ".pdf")) {
+            } else if (json["type"] == "DocumentType" and
+                       std::filesystem::exists (std::string (path) + "/" + raw + ".pdf")) {
                 temporary = rmcpp::Document::Type::AnnotatedPDF;
             }
 
